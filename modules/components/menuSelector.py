@@ -6,7 +6,7 @@ from time import sleep
 # Allows for calibration of lightsensor
 
 class Col:
-    tolerance = 2
+    tolerance = 4
     def __init__(self, col):
         self.r = col[0]
         self.g = col[1]
@@ -24,7 +24,6 @@ class MenuSelector:
         self.defaultColor = defaultColor
         self.state = state
         self.on = True
-        self.last = 0
 
     def index(self):
         if self.on:
@@ -34,8 +33,7 @@ class MenuSelector:
                 return None
             for color in self.colorMenu:
                 if color.equals(Col([r, g, b])):
-                    self.last = self.colorMenu.index(color)
-                    return self.last
+                    return self.colorMenu.index(color)
             return None
         return None
 

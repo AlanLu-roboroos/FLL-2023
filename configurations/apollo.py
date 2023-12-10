@@ -63,7 +63,7 @@ class apollo(config):
         }
 
         self.display = [self.drive.getHead,
-                        self.Llight.color, self.Rlight.readLight, self.menuSelector.color]
+                        self.Llight.readLight, self.Rlight.readLight, self.menuSelector.color]
         self.stopList = [self.drive, self.LMmotor, self.RMmotor]
 
         # self.xlift = forklift(Motor(Port.B))

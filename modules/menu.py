@@ -111,8 +111,10 @@ class menu:
 
         if self.page == 0 and self.config.menuSelector != None:
             idx = self.config.menuSelector.index()
-            if idx != None:
+            if idx != self.last_idx and idx != None:
+                self.last_idx = idx
                 self.index = idx
+                self.beep(self.index + 1)
                 return
 
             # Gets buttons that are pressed
