@@ -37,7 +37,6 @@ class config:
         try:
             return type(port, *args, **kwargs)
         except:
-            print("hii")
             message = "{}\nOn port {}".format(type.__name__, port)
             raise PortError(message)
 
@@ -51,7 +50,6 @@ def load_config():
             getattr(__import__("configurations." + name), name), name)()
     except PortError as e:
         message = e.message
-        print("hi")
     # except:
     #     if message == "":
     #         message = "Unkown robot\nNo config found"

@@ -1,6 +1,12 @@
 from pybricks.parameters import Port, Direction, Color
 
-from runs.exampleRun import ExampleRun
+from runs.chickenRun import ChickenRun
+from runs.cameraRun import CameraRun
+from runs.mixerRun import MixerRun
+from runs.dragonRun import DragonRun
+from runs.runBack import RunBack
+from runs.stageRun import StageRun
+from runs.finalRun import FinalRun
 
 from modules.components.drivebase import DriveBaseFull
 from modules.components.lightSensor import LightSensor
@@ -49,8 +55,8 @@ class apollo(config):
                                    56, 104, Llight=self.Llight, Rlight=self.Rlight)
 
         self.menu = {
-            "runs": [ExampleRun(self)],
-            "left": [None],
+            "runs": [ChickenRun(self), CameraRun(self), MixerRun(self), DragonRun(self), RunBack(self), StageRun(self), FinalRun(self)],
+            "left": [None, None, None, None, None, None, None],
             "utility": [self.drive.lightCal, self.gyro.calibrate, self.drive.tyreClean, self.drive.blank],
             "utility_name": ["LightCal", "gyroCal", "tyreClean", "blank"],
             "pages": ["runs", "utility"]
