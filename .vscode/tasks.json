@@ -14,6 +14,11 @@
       }
     },
     {
+      "label": "Upload all",
+      "type": "shell",
+      "command": "${workspaceFolder}/upload.sh apollo",
+    },
+    {
       "label": "Run",
       "type": "shell",
       "command": "ssh robot@apollo.local 'brickrun -r -- pybricks-micropython -i ~/FLL-2023/main.py'",
