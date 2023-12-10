@@ -13,7 +13,7 @@ class DragonRun(Thread):
         self.drive.setHead(0)
 
         Thread(target=self.arm.run_angle, args=[-90, 180]).start()
-        self.drive.moveDist(300, heading=0)
+        self.drive.moveDist(320, heading=0)
         self.drive.turnTo(30)
         self.drive.moveDist(-350, up=False, down=False)
 
