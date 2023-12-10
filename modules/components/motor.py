@@ -1,6 +1,5 @@
 from pybricks import ev3devices
 from pybricks.parameters import Direction, Stop
-from pybricks.pupdevices import Motor # type: ignore
 import pybricks.tools
 
 

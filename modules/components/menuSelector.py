@@ -5,37 +5,42 @@ from time import sleep
 # Wrapper class for colorsensor
 # Allows for calibration of lightsensor
 
+class Col:
+    tolerance = 2
+    def __init__(self, col):
+        self.r = col[0]
+        self.g = col[1]
+        self.b = col[2]
+    def equals(self, col):
+        if (abs(self.r - col.r) < self.tolerance and abs(self.g - col.g) < self.tolerance and abs(self.b - col.b) < self.tolerance):
+            return True
+        return False
+
 
 class MenuSelector:
     def __init__(self, port, colorMenu, defaultColor, state):
         self.sensor = ColorSensor(port)
-        self.min = 0
-        self.max = 100
         self.colorMenu = colorMenu
-        self.values = [defaultColor] * 100
         self.defaultColor = defaultColor
         self.state = state
         self.on = True
-
-    def update(self):
-        while True:
-            if self.state.getState() == 1:
-                color = self.sensor.color()
-                self.values.append(color)
-                if len(self.values) > 100:
-                    self.values.pop(0)
-            sleep(0.004)
+        self.last = 0
 
     def index(self):
         if self.on:
-            try:
-                return self.colorMenu.index(max(set(self.values), key=self.values.count))
-            except:
+            # try:
+            r, g, b = self.sensor.rgb()
+            if self.defaultColor.equals(Col([r, g, b])):
                 return None
+            for color in self.colorMenu:
+                if color.equals(Col([r, g, b])):
+                    self.last = self.colorMenu.index(color)
+                    return self.last
+            return None
         return None
 
     def color(self):
-        return max(set(self.values), key=self.values.count)
+        return self.sensor.rgb()
 
     def toggle(self):
         self.on = not self.on

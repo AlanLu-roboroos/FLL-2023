@@ -10,7 +10,7 @@ from runs.finalRun import FinalRun
 
 from modules.components.drivebase import DriveBaseFull
 from modules.components.lightSensor import LightSensor
-from modules.components.menuSelector import MenuSelector
+from modules.components.menuSelector import MenuSelector, Col
 from modules.components.gyro import Gyro
 from modules.components.tools import RunState, Timer
 from modules.components.motor import Motor
@@ -43,9 +43,9 @@ class apollo(config):
         self.Llight = self.init(LightSensor, Port.S2)
         self.Rlight = self.init(LightSensor, Port.S1)
 
-        # self.menuSelector = self.init(MenuSelector, Port.S3, [
-        #                               Color.BLACK, Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE, Color.WHITE], Color.BROWN, self.state)
-        # self.useMenuSelector = True
+        self.menuSelector = self.init(MenuSelector, Port.S3, [
+                                      Col([7, 10, 19]), Col([78, 51, 31]), Col([54, 14, 24]), Col([9, 31, 30]), Col([34, 41, 85]), Col([11, 24, 96]), Col([85, 87, 100])], Col([9, 4, 16]), self.state)
+        self.useMenuSelector = True
         self.leftpage = "runs"
 
         # self.lift = forklift(self, motor(self,
@@ -63,7 +63,7 @@ class apollo(config):
         }
 
         self.display = [self.drive.getHead,
-                        self.Llight.readLight, self.Rlight.readLight]
+                        self.Llight.color, self.Rlight.readLight, self.menuSelector.color]
         self.stopList = [self.drive, self.LMmotor, self.RMmotor]
 
         # self.xlift = forklift(Motor(Port.B))

@@ -14,7 +14,6 @@ class menu:
     page = 0
     refresh_time = 100
     max_items = 4
-    last_color = None
     last_idx = 0
     last_page = 0
 
@@ -25,10 +24,6 @@ class menu:
 
         # Gets configuration
         self.config = config
-
-        if self.config.menuSelector != None:
-            self.last_color = self.config.menuSelector.defaultColor
-            Thread(target=self.config.menuSelector.update).start()
 
         # Gets menu data from config
         tempMenu = config.menu
@@ -114,9 +109,8 @@ class menu:
         wait(self.refresh_time)
         self.refresh_time = 100
 
-        if self.page == 0 and self.config.menuSelector != None and self.config.menuSelector.color() != self.last_color:
+        if self.page == 0 and self.config.menuSelector != None:
             idx = self.config.menuSelector.index()
-            self.last_color = self.config.menuSelector.color()
             if idx != None:
                 self.index = idx
                 return
