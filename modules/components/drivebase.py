@@ -372,10 +372,10 @@ class DriveBaseFull:
         self.stop()
 
     # 1 for the black line in front, -1 for the white line in front
-    def lineReset(self, direction=1, timeout=10000):
+    def lineReset(self, direction=1, limits=[47, 53], timeout=10000):
         timer = StopWatch()
         while True:
-            if self.Llight.readLight() in range(47, 53) and self.Rlight.readLight() in range(47, 53):
+            if self.Llight.readLight() in range(limits[0], limits[1]) and self.Rlight.readLight() in range(limits[0], limits[1]):
                 break
             if timer.time() > timeout:
                 break
