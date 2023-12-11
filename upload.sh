@@ -4,7 +4,7 @@ robots=("dingo")
 robot=$1
 shift
 files=(${@})
-folders=("configurations" "modules")
+folders=("configurations" "modules" "runs")
 
 function exit_usage() {
   echo "Usage: $0 robot_name"
