@@ -56,7 +56,7 @@ class apollo(config):
 
         self.menu = {
             "runs": [ChickenRun(self), CameraRun(self), MixerRun(self), DragonRun(self), RunBack(self), StageRun(self), FinalRun(self)],
-            "left": [None, None, None, None, None, None, None],
+            "left": [None, None, None, self.resetDragonRunArm, None, self.resetStageRunArm, None],
             "utility": [self.drive.lightCal, self.gyro.calibrate, self.drive.tyreClean, self.drive.blank],
             "utility_name": ["LightCal", "gyroCal", "tyreClean", "blank"],
             "pages": ["runs", "utility"]
@@ -69,3 +69,8 @@ class apollo(config):
         # self.xlift = forklift(Motor(Port.B))
         # self.ylift = forklift(Motor(Port.C))
         # self.lift = doubleForklift(self.xlift, self.ylift)
+    def resetStageRunArm(self):
+        self.LMmotor.run_time(-200, 1000)
+    
+    def resetDragonRunArm(self):
+        self.RMmotor.run_time(100, 1000)
