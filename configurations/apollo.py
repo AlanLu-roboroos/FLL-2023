@@ -44,7 +44,7 @@ class apollo(config):
         self.Rlight = self.init(LightSensor, Port.S1)
 
         self.menuSelector = self.init(MenuSelector, Port.S3, [
-                                      Col([7, 10, 19]), Col([78, 51, 31]), Col([54, 14, 24]), Col([9, 31, 30]), Col([34, 41, 85]), Col([11, 24, 96]), Col([85, 87, 100])], Col([9, 4, 16]), self.state)
+                                      Col([7, 10, 19]), Col([77, 52, 31]), Col([54, 14, 24]), Col([9, 31, 30]), Col([34, 41, 85]), Col([11, 24, 96]), Col([85, 87, 100])], Col([9, 4, 16]), self.state)
         self.useMenuSelector = True
         self.leftpage = "runs"
 
