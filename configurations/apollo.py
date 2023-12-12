@@ -56,7 +56,7 @@ class apollo(config):
 
         self.menu = {
             "runs": [ChickenRun(self), CameraRun(self), MixerRun(self), DragonRun(self), RunBack(self), StageRun(self), FinalRun(self)],
-            "left": [None, None, None, self.resetDragonRunArm, None, self.resetStageRunArm, None],
+            "left": [None, self.resetCamerRunArm, None, self.resetDragonRunArm, None, self.resetStageRunArm, None],
             "utility": [self.drive.lightCal, self.gyro.calibrate, self.drive.tyreClean, self.drive.blank],
             "utility_name": ["LightCal", "gyroCal", "tyreClean", "blank"],
             "pages": ["runs", "utility"]
@@ -74,3 +74,6 @@ class apollo(config):
     
     def resetDragonRunArm(self):
         self.RMmotor.run_time(100, 1000)
+    
+    def resetCamerRunArm(self):
+        self.LMmotor.run_time(100, 1000)
