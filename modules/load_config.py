@@ -43,7 +43,6 @@ class config:
 
 def load_config():
     name = popen('hostname').read().strip()
-    print(name)
     message = ""
     try:
         robot_config = getattr(
