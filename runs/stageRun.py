@@ -27,14 +27,14 @@ class StageRun(Thread):
         self.drive.moveDist(-220, heading=45)
         self.drive.turnTo(110)
         self.drive.moveDist(-450, heading=110)
-        self.arm.run_angle(-400, 200)
+        self.arm.run_angle(-400, 230)
         self.drive.turnTo(180)
         # self.drive.moveDist(85, heading=180)
         self.drive.moveArc(-110, 90, speed=100)
         # Thread(target=self.raiseArmAfterFlower).start()
-        self.drive.moveDist(470, turn=False, heading=90)
-        self.drive.spinTo(180)
-        self.drive.moveDist(600, heading=180, down=False)
+        self.drive.moveDist(420, turn=False, heading=90)
+        self.drive.spinTo(160)
+        self.drive.moveDist(600, heading=160, down=False)
 
         self.config.state.setState(1)
     
