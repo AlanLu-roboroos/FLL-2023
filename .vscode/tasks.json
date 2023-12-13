@@ -6,7 +6,7 @@
     {
       "label": "Upload File",
       "type": "shell",
-      "command": "${workspaceFolder}/upload.sh apollo ${relativeFile}",
+      "command": "${workspaceFolder}/upload.sh zeus ${relativeFile}",
       "problemMatcher": [],
       "group": {
         "kind": "build",
@@ -16,12 +16,12 @@
     {
       "label": "Upload all",
       "type": "shell",
-      "command": "${workspaceFolder}/upload.sh apollo",
+      "command": "${workspaceFolder}/upload.sh zeus",
     },
     {
       "label": "Run",
       "type": "shell",
-      "command": "ssh robot@apollo.local 'brickrun -r -- pybricks-micropython -i ~/FLL-2023/main.py'",
+      "command": "ssh robot@zeus.local 'brickrun -r -- pybricks-micropython -i ~/FLL-2023/main.py'",
     }
   ]
 }
