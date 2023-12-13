@@ -15,7 +15,7 @@ class StageRun(Thread):
 
         self.drive.moveDist(300, heading=0)
         self.drive.turnTo(-32)
-        self.drive.moveDist(180, heading=-35)
+        self.drive.moveDist(180, heading=-33)
         self.drive.moveLight(self.Llight, [0, 10])
         self.drive.turnTo(-38)
         self.drive.moveDist(135, heading=-38)
