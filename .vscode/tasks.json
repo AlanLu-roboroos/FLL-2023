@@ -16,12 +16,12 @@
     {
       "label": "Upload all",
       "type": "shell",
-      "command": "${workspaceFolder}/upload.sh zeus",
+      "command": "${workspaceFolder}/upload.sh zeus"
     },
     {
       "label": "Run",
       "type": "shell",
-      "command": "ssh robot@zeus.local 'brickrun -r -- pybricks-micropython -i ~/FLL-2023/main.py'",
+      "command": "ssh robot@zeus.local 'brickrun -r -- pybricks-micropython -i ~/FLL-2023/main.py'"
     }
   ]
 }

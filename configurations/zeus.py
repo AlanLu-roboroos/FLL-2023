@@ -5,6 +5,7 @@ from runs.cameraRun import CameraRun
 from runs.mixerRun import MixerRun
 from runs.dragonRun import DragonRun
 from runs.runBack import RunBack
+from runs.cameraRun2 import CameraRun2
 from runs.stageRun import StageRun
 from runs.finalRun import FinalRun
 
@@ -18,7 +19,7 @@ from modules.components.motor import Motor
 from modules.load_config import config
 
 
-class apollo(config):
+class zeus(config):
     def hydroRunResetArm(self):
         self.RMmotor.run_time(300, 400)
 
@@ -29,7 +30,7 @@ class apollo(config):
         self.STARTSPEED = 50
         self.TURN_SPEED_MIN = 30
         self.TURN_SPEED_MAX = 220
-        self.LIGHTCAL_CONF = "apollo.cal"
+        self.LIGHTCAL_CONF = "zeus.cal"
 
         self.Lmotor = self.init(
             Motor, Port.A, self, Direction.COUNTERCLOCKWISE)
@@ -44,7 +45,7 @@ class apollo(config):
         self.Rlight = self.init(LightSensor, Port.S1)
 
         self.menuSelector = self.init(MenuSelector, Port.S3, [
-                                      Col([7, 10, 19]), Col([77, 52, 31]), Col([54, 14, 24]), Col([9, 31, 30]), Col([34, 41, 85]), Col([11, 24, 96]), Col([85, 87, 100])], Col([9, 4, 16]), self.state)
+                                      Col([7, 10, 19]), Col([77, 52, 31]), Col([54, 14, 24]), Col([9, 31, 30]), Col([34, 41, 85]), Col([27, 47, 31]), Col([11, 24, 96]), Col([85, 87, 100])], Col([9, 4, 16]), self.state)
         self.useMenuSelector = True
         self.leftpage = "runs"
 
@@ -55,15 +56,14 @@ class apollo(config):
                                    56, 104, Llight=self.Llight, Rlight=self.Rlight)
 
         self.menu = {
-            "runs": [ChickenRun(self), CameraRun(self), MixerRun(self), DragonRun(self), RunBack(self), StageRun(self), FinalRun(self)],
-            "left": [None, self.resetCamerRunArm, None, self.resetDragonRunArm, None, self.resetStageRunArm, None],
+            "runs": [ChickenRun(self), CameraRun(self), MixerRun(self), DragonRun(self), CameraRun2(self),  RunBack(self), StageRun(self), FinalRun(self)],
+            "left": [None, self.resetCamerRunArm, None, self.resetDragonRunArm, None, None, self.resetStageRunArm, self.resetFinalRunArm],
             "utility": [self.drive.lightCal, self.gyro.calibrate, self.drive.tyreClean, self.drive.blank],
             "utility_name": ["LightCal", "gyroCal", "tyreClean", "blank"],
             "pages": ["runs", "utility"]
         }
 
-        self.display = [self.drive.getHead,
-                        self.Llight.readLight, self.Rlight.readLight, self.menuSelector.color]
+        self.display = [self.drive.getHead, self.menuSelector.color]
         self.stopList = [self.drive, self.LMmotor, self.RMmotor]
 
         # self.xlift = forklift(Motor(Port.B))
@@ -77,3 +77,6 @@ class apollo(config):
     
     def resetCamerRunArm(self):
         self.LMmotor.run_time(100, 1000)
+    
+    def resetFinalRunArm(self):
+        self.LMmotor.run_time(300, 1000)
