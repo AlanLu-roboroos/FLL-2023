@@ -26,3 +26,6 @@ class LightSensor:
 
     def color(self):
         return self.sensor.color()
+    
+    def rgb(self):
+        return self.sensor.rgb()

@@ -292,7 +292,7 @@ class DriveBaseFull:
         # print(tolerance, st_heading, "->", self.getHead(), ":", self.getHead() - st_heading)
 
     # Turns the robot to a given heading
-    def turnTo(self, heading, tolerance=2, timeout=4000):
+    def turnTo(self, heading, tolerance=2, speed=1000, timeout=4000):
         if self.config.state.getState() == 3:
             return
 
@@ -301,7 +301,7 @@ class DriveBaseFull:
         while angle not in range(-tolerance, tolerance) and runTime.time() < timeout:
             if self.config.state.getState() == 3:
                 break
-            self.drive.drive(0, self.turnSpeed(angle))
+            self.drive.drive(0, min(self.turnSpeed(angle), speed))
             angle = self.turnAngle(heading)
         self.stop()
         # print(heading, self.getHead(), range(-tolerance, tolerance))
@@ -348,6 +348,24 @@ class DriveBaseFull:
             if self.config.state.getState() == 3:
                 break
             self.drive.drive(80, self.turnAngle(heading))
+        self.stop()
+    
+    def moveRGB(self, sensor, color, heading=None, tolerance=5, timeout=10000):
+        if self.config.state.getState() == 3:
+            return
+
+        timer = StopWatch()
+        if heading == None:
+            heading = self.getHead()
+        else:
+            if self.turnAngle(heading) not in range(-5, 5):
+                self.turnTo(heading)
+        rgb = sensor.rgb()
+        while (abs(rgb[0] - color[0]) > tolerance or abs(rgb[1] - color[1]) > tolerance or abs(rgb[2] - color[2]) > tolerance) and timer.time() < timeout:
+            if self.config.state.getState() == 3:
+                break
+            self.drive.drive(80, self.turnAngle(heading))
+            rgb = sensor.rgb()
         self.stop()
 
     # Moves until wheels have stalled
