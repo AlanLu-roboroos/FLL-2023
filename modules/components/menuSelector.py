@@ -6,7 +6,7 @@ from time import sleep
 # Allows for calibration of lightsensor
 
 class Col:
-    tolerance = 4
+    tolerance = 6
     def __init__(self, col):
         self.r = col[0]
         self.g = col[1]
