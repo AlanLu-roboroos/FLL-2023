@@ -13,9 +13,9 @@ class ChickenRun(Thread):
 
         self.drive.moveDist(400, heading=-45)
         self.spinner.run(-4000)
-        self.wait(5000)
-        self.drive.moveDist(-50)
-        self.drive.moveArc(100, -90, speed=-100)
-        self.drive.moveDist(-400, heading=-80, turn=False)
+        self.wait(4000)
+        self.drive.moveDist(-50, down=False)
+        self.drive.moveArc(60, -60, speed=-400)
+        self.drive.moveDist(-400, heading=-80, turn=False, up=False, down=False)
 
         self.config.state.setState(1)

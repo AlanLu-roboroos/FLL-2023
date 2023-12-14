@@ -8,11 +8,11 @@ class CameraRun2(Thread):
 
     def run(self):
         self.drive.setHead(90)
-        self.drive.drive.drive(150, 5)
-        self.wait(2000)
+        Thread(target=self.runArmAngle, args=[-150, 300]).start()
+        self.drive.drive.drive(200, 5)
+        self.wait(1500)
         self.drive.drive.drive(50, 5)
-        self.runArmAngle(-200, 300)
-        self.drive.moveDist(-700)
+        self.drive.moveDist(-700, down=False, up=False)
 
         self.config.state.setState(1)
     

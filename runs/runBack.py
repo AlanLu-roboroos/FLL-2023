@@ -10,13 +10,21 @@ class RunBack(Thread):
     def run(self):
         self.drive.setHead(-90)
         self.drive.moveDist(-300, heading=-135, turn=False)
-        self.drive.moveArc(-250, -50, speed=-120)
-        self.drive.moveDist(-100, heading=-50)
-        self.drive.moveDist(280, heading=-50)
+        self.drive.moveArc(-250, -50, speed=-200)
+        self.drive.moveDist(-60, heading=-50)
+        self.drive.moveDist(210, heading=-50)
+        Thread(target=self.putArmDown).start()
         self.drive.turnTo(-160)
-        self.config.LMmotor.run_angle(400, 410)
         self.drive.turnTo(-125)
-        self.config.LMmotor.run_angle(-1000, 200)
-        self.drive.moveDist(-1000, heading=-80)
+        Thread(target=self.config.LMmotor.run_angle, args=[-1000, 200]).start()
+        self.wait(750)
+        # self.drive.spinTo(-80)
+        self.drive.moveArc(-100, -80, speed=-200)
+        self.drive.moveDist(-1000, speed=1000, heading=-80, up=False, down=False, turn=False)
 
         self.config.state.setState(1)
+    
+    def putArmDown(self):
+        self.wait(330)
+        self.config.LMmotor.run_angle(400, 410)
+

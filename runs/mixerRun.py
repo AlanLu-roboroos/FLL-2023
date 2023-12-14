@@ -10,10 +10,10 @@ class MixerRun(Thread):
 
     def run(self):
         self.drive.setHead(0)
-        self.drive.moveDist(720, heading=15, turn=False)
+        self.drive.moveDist(720, speed=1000, heading=15, turn=False)
         self.drive.turnTo(45)
         Thread(target=self.dropFigures).start()
-        self.wait(1000)
+        self.wait(500)
         self.drive.moveDist(-80, heading=45, speed=100)
         self.drive.turnTo(135)
         self.drive.moveDist(-100)
@@ -29,17 +29,18 @@ class MixerRun(Thread):
         # self.drive.stop()
         self.drive.moveDist(-35, heading=40)
         # Thread(target=self.drive.moveDist, args=[10]).start()
-        self.arm.run_angle(800, 1200)
-        self.wait(500)
-        self.drive.turnTo(63)
-        self.drive.moveDist(80)
-        self.arm.run_angle(-800, 1200)
-        self.drive.moveDist(-400, down=False)
+        Thread(target=self.arm.run_angle, args=[1000, 1200]).start()
+        self.wait(1200)
+        self.drive.turnTo(58)
+        self.drive.moveDist(70)
+        Thread(target=self.arm.run_angle, args=[-1000, 1200]).start()
+        self.wait(800)
+        self.drive.moveDist(-400, speed=1000, down=False, up=False)
 
         self.config.state.setState(1)
 
     def dropFigures(self):
-        self.arm.run_angle(800, 1600)
+        self.arm.run_angle(1000, 1600)
 
     def dropArm(self):
-        self.arm.run_angle(-800, 1600)
+        self.arm.run_angle(-1000, 1600)

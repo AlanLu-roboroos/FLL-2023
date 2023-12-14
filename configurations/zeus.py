@@ -26,10 +26,10 @@ class zeus(config):
     def __init__(self):
         super().__init__()
         self.SPEED_LIST_COUNT = 2000
-        self.ACCELERATION = 420
-        self.STARTSPEED = 50
-        self.TURN_SPEED_MIN = 30
-        self.TURN_SPEED_MAX = 220
+        self.ACCELERATION = 520
+        self.STARTSPEED = 70
+        self.TURN_SPEED_MIN = 40
+        self.TURN_SPEED_MAX = 260
         self.LIGHTCAL_CONF = "zeus.cal"
 
         self.Lmotor = self.init(
