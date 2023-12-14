@@ -4,9 +4,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Upload File",
+      "label": "Upload Changed",
       "type": "shell",
-      "command": "${workspaceFolder}/upload.sh zeus ${relativeFile}",
+      "command": "make -j",
       "problemMatcher": [],
       "group": {
         "kind": "build",
