@@ -92,6 +92,8 @@ class menu:
     # Main control loop
     # Handles button presses
     def update(self):
+        for item in self.config.stopList:
+            item.stop()
         # Makes sure index is within bounds of menu
         self.page = self.wrap_index(self.page, self.pages)
         self.index = self.wrap_index(
