@@ -281,12 +281,21 @@ class DriveBaseFull:
         turn_rate = (360 * speed) / (math.pi * 2 * radius)
         tolerance = int(3 * abs(speed) / 100)
 
+        rotations = math.floor(self.gyro.angle() / 360)
+        angleIncreasing = (1 if speed > 0 else -1) * (1 if radius > 0 else -1)
+
         # st_heading = self.getHead()
         runTime = StopWatch()
         self.drive.drive(speed, turn_rate)
-        while self.turnAngle(heading) not in range(-tolerance, tolerance) and runTime.time() < timeout:
-            if self.config.state.getState() == 3:
-                break
+        if angleIncreasing:
+            while self.gyro.angle() < rotations * 360 + heading and runTime.time() < timeout:
+                if self.config.state.getState() == 3:
+                    break
+        else:
+            while self.gyro.angle() > (rotations-1) * 360 + heading and runTime.time() < timeout:
+                if self.config.state.getState() == 3:
+                    break
+
         self.stop()
         # wait(1000)
         # print(tolerance, st_heading, "->", self.getHead(), ":", self.getHead() - st_heading)
