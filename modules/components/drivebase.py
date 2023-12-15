@@ -279,7 +279,7 @@ class DriveBaseFull:
             return
 
         turn_rate = (360 * speed) / (math.pi * 2 * radius)
-        tolerance = int(2 * abs(speed) / 100)
+        tolerance = int(3 * abs(speed) / 100)
 
         # st_heading = self.getHead()
         runTime = StopWatch()
