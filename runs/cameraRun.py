@@ -19,7 +19,7 @@ class CameraRun(Thread):
         self.drive.moveDist(300, heading=-90, turn=False)
         self.drive.moveDist(-50, heading=-90)
         self.drive.moveArc(200, -60, speed=400, timeout=5000)
-        self.drive.moveArc(-2000, -140, speed=1000, timeout=5000)
+        self.drive.moveArc(-2200, -160, speed=1000, timeout=5000)
 
 
         self.config.state.setState(1)

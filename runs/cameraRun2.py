@@ -12,7 +12,9 @@ class CameraRun2(Thread):
         self.drive.drive.drive(200, 5)
         self.wait(1500)
         self.drive.drive.drive(50, 5)
-        self.drive.moveDist(-700, down=False, up=False)
+        # self.drive.moveDist(-700, down=False, up=False)
+        self.drive.drive.drive(-400, 5)
+        self.wait(2000)
 
         self.config.state.setState(1)
     

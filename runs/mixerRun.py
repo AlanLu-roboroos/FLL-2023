@@ -35,6 +35,7 @@ class MixerRun(Thread):
         self.drive.moveDist(70)
         Thread(target=self.arm.run_angle, args=[-1000, 1200]).start()
         self.wait(800)
+        Thread(target=self.raiseArm).start()
         self.drive.moveDist(-400, speed=1000, down=False, up=False)
 
         self.config.state.setState(1)
@@ -44,3 +45,7 @@ class MixerRun(Thread):
 
     def dropArm(self):
         self.arm.run_angle(-1000, 1600)
+    
+    def raiseArm(self):
+        self.wait(2000)
+        self.arm.run_angle(1000, 1600)
